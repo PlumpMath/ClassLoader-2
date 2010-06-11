@@ -1,0 +1,50 @@
+# [Distribution] ##############################################################
+
+Name:
+    ClassLoader
+
+Root:
+    NULL
+
+Version:
+    1.0
+
+Utf8:
+    yes
+
+Interpreter:
+    perl
+
+StyleSheets:
+
+Prefix:
+
+PcrDir:
+    /data/code/ClassLoader-01
+
+LibDir:
+    lib
+
+SdocDir:
+    /tmp/sdoc
+
+HtmlDir:
+    /tmp/html
+
+TestDir:
+    t
+
+ScriptDir:
+    script
+
+Author:
+    Frank Seitz, U{http://www.fseitz.de/}
+
+Copyright:
+    Copyright (C) Frank Seitz %YEARS%
+
+ClassLicense:
+    This library is free software; you can redistribute it and/or modify
+    it under the same terms as Perl itself.
+
+# eof

@@ -1,0 +1,8 @@
+Build.PL
+lib/ClassLoader.pm
+MANIFEST			This list of files
+META.yml
+pcr.dis
+t/ClassLoader.t
+t/ClassLoader/MyClass1.pm
+t/ClassLoader/MyClass2.pm

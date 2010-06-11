@@ -1,0 +1,19 @@
+---
+name: ClassLoader
+version: 1.00005
+author:
+  - "Frank Seitz <fs[at]fseitz.de>"
+abstract: "~"
+license: perl
+build_requires:
+  Test::More: 0
+generated_by: Module::Build version 0.280801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
+provides:
+  ClassLoader:
+    file: lib/ClassLoader.pm
+    version: 1.00005
+resources:
+  license: http://dev.perl.org/licenses/
