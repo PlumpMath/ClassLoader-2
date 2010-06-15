@@ -2,6 +2,8 @@ package ClassLoader;
 
 # -----------------------------------------------------------------------------
 
+=encoding utf8
+
 =head1 NAME
 
 ClassLoader - Load classes automatically
@@ -18,15 +20,16 @@ ClassLoader - Load classes automatically
 
 =head2 Zweck
 
-Muede, C<use>-Anweisungen fuer das Laden von Perl-Klassen zu schreiben?
+Müde, C<use>-Anweisungen für das Laden von Perl-Klassen zu schreiben?
 
-Dieses Modul reduziert das Laden aller Klassen auf eine Anweisung:
+Dieses Modul reduziert das Laden aller Klassen auf eine
+einzige Anweisung:
 
     use ClassLoader;
 
 Danach wird jede Klasse automatisch mit ihrem ersten
 Methodenaufruf geladen. Dies geschieht bei I<jeder> Methode,
-gleichgueltig, ob Klassen- oder Objektmethode.
+gleichgültig, ob Klassen- oder Objektmethode.
 
 =head2 Vorteile
 
@@ -38,24 +41,24 @@ Man muss keine C<use>-Aufrufe mehr schreiben
 
 =item *
 
-Es werden nur die Klassen geladen, die das Programm tatsaechlich
-benoetigt
+Es werden nur die Klassen geladen, die das Programm tatsächlich
+benötigt
 
 =item *
 
-Die Startzeit des Programms verkuerzt sich
+Die Startzeit des Programms verkürzt sich
 
 =item *
 
-Das Programm benoetigt unter Umstaenden weniger Speicher, da keine
-ueberfluessigen Module geladen werden
+Das Programm benötigt unter Umständen weniger Speicher, da keine
+überflüssigen Module geladen werden
 
 =back
 
 =head2 Was ist ein Klassen-Modul?
 
 Unter einem Klassen-Modul verstehen wir eine pm-Datei, die
-gmaess Perl-Konventionen eine Klasse definiert, d.h. die
+gmäß Perl-Konventionen eine Klasse definiert, d.h. die
 
 =over 4
 
@@ -65,12 +68,12 @@ ein Package mit dem Namen der Klasse deklariert,
 
 =item 2
 
-unter dem Namen des Package gemaess den Perl-Konventionen im
+unter dem Namen des Package gemäß den Perl-Konventionen im
 Dateisystem abgelegt ist,
 
 =item 3
 
-ihre Basisklassen (sofern vorhanden) selbstaendig laedt.
+ihre Basisklassen (sofern vorhanden) selbständig lädt.
 
 =back
 
@@ -87,22 +90,22 @@ definiert und irgendwo unter C<@INC> installiert. Sie hat den Inhalt:
     1;
 
 Das Laden der Basisklassen-Module geschieht hier mittels
-C<use base>. Es ist genauso moeglich, die Basisklassen-Module per
-C<use> zu laden und C<@ISA> zuzuweisen, was aber umstaendlicher ist.
+C<use base>. Es ist genauso möglich, die Basisklassen-Module per
+C<use> zu laden und C<@ISA> zuzuweisen, was aber umständlicher ist.
 
-Eine pm-Datei, die diesen Konventionen genuegt, ist ein
+Eine pm-Datei, die diesen Konventionen genügt, ist ein
 Klassen-Modul und wird von ClassLoader automatisch beim ersten
 Methodenzugriff geladen.
 
 =head2 Wie funktioniert das?
 
 ClassLoader installiert sich als Basisklasse von UNIVERSAL und
-definiert eine Methode AUTOLOAD, bei der saemtliche
-Methodenaufrufe ankommen, die vom Perl-Interpreter nicht aufgeloest
-werden koennen. Die AUTOLOAD-Methode laedt das benoetigte
+definiert eine Methode AUTOLOAD, bei der sämtliche
+Methodenaufrufe ankommen, die vom Perl-Interpreter nicht aufgelöst
+werden können. Die AUTOLOAD-Methode lädt das benötigte
 Klassen-Modul und ruft die betreffende Methode auf. Existiert das
-Klassen-Modul nicht oder enthaelt es die gerufene Methode nicht, wird
-eine Exception ausgeloest.
+Klassen-Modul nicht oder enthält es die gerufene Methode nicht, wird
+eine Exception ausgelöst.
 
 Die AUTOLOAD-Methode, die ClassLoader definiert, ist recht einfach
 (Fehlerbehandlung hier vereinfacht):
@@ -127,19 +130,19 @@ Die AUTOLOAD-Methode, die ClassLoader definiert, ist recht einfach
     }
 
 Lediglich der erste Methodenaufruf einer (noch nicht geladenen)
-Klasse laeuft ueber diese AUTOLOAD-Methode. Alle folgenden
+Klasse läuft über diese AUTOLOAD-Methode. Alle folgenden
 Methodenaufrufe der Klasse finden I<direkt> statt, also ohne
 Overhead! Methodenaufrufe einer explizit geladenen Klasse laufen
-von vornherein nicht ueber die AUTOLOAD-Methode.
+von vornherein nicht über die AUTOLOAD-Methode.
 
 =head2 Was passiert im Fehlerfall?
 
-Schlaegt das Laden des Moduls fehl oder existiert die Methode
-nicht, wird eine Exception ausgeloest.
+Schlägt das Laden des Moduls fehl oder existiert die Methode
+nicht, wird eine Exception ausgelöst.
 
-Damit der Ort des Fehlers einfach lokalisiert werden kann, enthaelt
-der Exception-Text ausfuehrliche Informationen ueber den Kontext des
-Fehlers, einschliesslich Stacktrace.
+Damit der Ort des Fehlers einfach lokalisiert werden kann, enthält
+der Exception-Text ausführliche Informationen über den Kontext des
+Fehlers, einschließlich Stacktrace.
 
 Aufbau des Exception-Texts:
 
@@ -157,8 +160,8 @@ Aufbau des Exception-Texts:
 =head2 Kann eine Klasse selbst eine AUTOLOAD-Methode haben?
 
 Ja, denn die AUTOLOAD-Methode von ClassLoader wird I<vor> dem Laden
-der Klasse angesprochen. Alle spaeteren Methoden-Aufrufe der Klasse
-werden ueber die Klasse selbst aufgeloest. Wenn die Klasse eine
+der Klasse angesprochen. Alle späteren Methoden-Aufrufe der Klasse
+werden über die Klasse selbst aufgelöst. Wenn die Klasse eine
 AUTOLOAD-Methode besitzt, funktioniert diese genau so wie ohne
 ClassLoader.
 
@@ -170,7 +173,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = 1.000059;
+our $VERSION = 1.000060;
 
 unshift @UNIVERSAL::ISA,'ClassLoader';
 
@@ -182,12 +185,12 @@ unshift @UNIVERSAL::ISA,'ClassLoader';
 
     $this->AUTOLOAD;
 
-Lade Klassen-Modul und fuehre den Methodenaufruf durch.
+Lade Klassen-Modul und führe den Methodenaufruf durch.
 Die Argumente und der Returnwert entsprechen denen der gerufenen Methode.
-Schlaegt das Laden des Moduls fehl, loest die Methode eine Exception aus
+Schlägt das Laden des Moduls fehl, löst die Methode eine Exception aus
 (siehe oben).
 
-Die AUTOLOAD-Methode implementiert die Funktionalitaet des
+Die AUTOLOAD-Methode implementiert die Funktionalität des
 Moduls. Sie wird nicht direkt, sondern vom Perl-Interpreter
 gerufen, wenn eine Methode nicht gefunden wird.
 
@@ -258,27 +261,27 @@ sub AUTOLOAD {
 =item *
 
 Der Mechanismus funktioniert nicht, wenn der Modulpfad anders
-lautet als die Klasse heisst. Solche Module muessen explizit per
+lautet als die Klasse heißt. Solche Module müssen explizit per
 use geladen werden.
 
 =item *
 
 Sind mehrere Klassen in einer Moduldatei definiert, kann das
-automatische Laden logischerweise nur ueber eine dieser Klassen
-erfolgen. Am besten laedt man solche Module auch explizit.
+automatische Laden logischerweise nur über eine dieser Klassen
+erfolgen. Am besten lädt man solche Module auch explizit.
 
 =item *
 
-Ueber Aufruf der Methode import() ist es nicht moeglich, ein
+Über Aufruf der Methode import() ist es nicht möglich, ein
 Modul automatisch zu laden, da Perl bei Nichtexistenz von
 import() AUTOLOAD() nicht aufruft, sondern den Aufruf
 ignoriert. Man kann durch $class->import() also nicht
-das Laden eines Klassen-Moduls ausloesen.
+das Laden eines Klassen-Moduls auslösen.
 
 =item *
 
 Module, die nicht objektorientiert, sondern Funktionssammlungen
-sind, werden von ClassLoader nicht behandelt. Diese muessen
+sind, werden von ClassLoader nicht behandelt. Diese müssen
 per use geladen werden.
 
 =back
