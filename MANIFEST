@@ -1,8 +1,7 @@
 Build.PL
-lib/ClassLoader.pm
-Makefile.PL
+lib/ClassLoader.pm		Class
 MANIFEST			This list of files
 META.yml
 t/ClassLoader.t
-t/ClassLoader/MyClass1.pm
-t/ClassLoader/MyClass2.pm
+t/ClassLoader/MyClass1.pm	Testclass 1
+t/ClassLoader/MyClass2.pm	Testclass 2

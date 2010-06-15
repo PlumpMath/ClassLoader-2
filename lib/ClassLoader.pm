@@ -154,16 +154,6 @@ Aufbau des Exception-Texts:
     Stack:
         <STACKTRACE>
 
-Mittels Test auf das Exception-Kennzeichen "CLASSLOADER-L<lt>N>" kann
-unabhaengig vom Fehlertext auf einen bestimmten Fehler geprueft
-werden:
-
-    $obj = eval { My::Class->new };
-    if ($@ =~ /CLASSLOADER-00001/) {
-        # Modul My/Class.pm konnte nicht geladen werden
-        ...
-    }
-
 =head2 Kann eine Klasse selbst eine AUTOLOAD-Methode haben?
 
 Ja, denn die AUTOLOAD-Methode von ClassLoader wird I<vor> dem Laden
@@ -180,7 +170,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = 1.000058;
+our $VERSION = 1.000059;
 
 unshift @UNIVERSAL::ISA,'ClassLoader';
 
