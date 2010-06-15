@@ -1,9 +1,9 @@
 ---
 name: ClassLoader
-version: 1.00005
+version: 1.000058
 author:
   - "Frank Seitz <fs[at]fseitz.de>"
-abstract: "~"
+abstract: Load classes automatically
 license: perl
 build_requires:
   Test::More: 0
@@ -14,6 +14,6 @@ meta-spec:
 provides:
   ClassLoader:
     file: lib/ClassLoader.pm
-    version: 1.00005
+    version: 1.000058
 resources:
   license: http://dev.perl.org/licenses/
